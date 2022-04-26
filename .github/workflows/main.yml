@@ -1,5 +1,3 @@
-# main.yml
-# 一个 workflow，名字为Github Action Example
 name: MakeJson
 
 # 触发 workflow 的事件
