@@ -23,6 +23,8 @@ def makeItHomeData():
         title = BeautifulSoup(str(content), 'html.parser').select('.plc-title')
         if(len(title) > 0):
             item['title'] = title[0].string
+        else:
+            item['title'] = '未指定'
         pics = BeautifulSoup(str(content), 'html.parser').select('img')
         images = []
         for pic in pics:
