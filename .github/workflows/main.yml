@@ -5,8 +5,8 @@ on: [push]
 
 # 一个workflow由执行的一项或多项job
 jobs:
-    # 一个job任务，任务名为build
-    build:
+  # 一个job任务，任务名为build
+  build:
       runs-on: ubuntu-latest
       steps:
       - name: checkout actions
