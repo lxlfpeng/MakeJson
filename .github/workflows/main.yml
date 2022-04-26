@@ -31,6 +31,7 @@ jobs:
           git add .
           git commit -m "update" -a
           git push
+          git config --global user.email 565289282@qq.com
           git remote add gitee https://lxlfpeng:yangpeng123@gitee.com/lxlfpeng/make-json2.git
           git push -u gitee "master"
       # - name: Push changes
