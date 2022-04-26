@@ -31,6 +31,8 @@ jobs:
           git add .
           git commit -m "update" -a
           git push
+          git remote set-url gitee https://acbc5cffcced770697fd0777846b2d68@gitee.com/lxlfpeng/make-json2.git
+          git push -u gitee "master"
       # - name: Push changes
       #   uses: ad-m/github-push-action@master
       #   with:
