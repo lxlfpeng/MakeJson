@@ -1,51 +1,25 @@
-name: MakeJson
+name: Sync Github Repos To Gitee
 
-# 触发 workflow 的事件
-on: [push]
+on:
+  push:
+    branches: 
+      - master
 
-# 一个workflow由执行的一项或多项job
 jobs:
-  # 一个job任务，任务名为build
   build:
-      runs-on: ubuntu-latest
-      steps:
-      - name: checkout actions
-        uses: actions/checkout@v2 # Checking out the repo
-      - name: Set up Python 3.7
-        uses: actions/setup-python@v1
-        with:
-          python-version: 3.7
-      - name: Install dependencies
-        run: |
-           python -m pip install --upgrade pip
-            pip install requests
-            pip install bs4
-            pip install lxml
-      - name: Update paper list
-        run: |
-          python InformationFlow.py
-      - name: commit
-        run: |
-          git config --global user.email "565289282@qq.com"
-          git config --global user.name "lxlfpeng"
-          git add .
-          git commit -m "update" -a
-          git push
-      - name: Sync Github Repos To Gitee  # 名字随便起
-        uses: Yikun/hub-mirror-action@v1.1  # 使用Yikun/hub-mirror-action
-        with:
-          src: github/lxlfpeng  # 源端账户名(github)
-          dst: gitee/lxlfpeng  # 目的端账户名(gitee)
-          dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}  # SSH密钥对中的私钥
-          dst_token:  ${{ secrets.GITEE_TOKEN }}  # Gitee账户的私人令牌
-          account_type: user  # 账户类型
-          clone_style: "https"  # 使用https方式进行clone，也可以使用ssh
-          debug: true  # 启用后会显示所有执行命令
-          force_update: true  # 启用后，强制同步，即强制覆盖目的端仓库
-          static_list: "MakeJson"  # 静态同步列表，在此填写需要同步的仓库名称，可填写多个
-          timeout: '600s'  # git超时设置，超时后会自动重试git操作
-      # - name: Push changes
-      #   uses: ad-m/github-push-action@master
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      
+    runs-on: ubuntu-20.04
+    steps:
+
+    - name: Sync Github Repos To Gitee  # 名字随便起
+      uses: Yikun/hub-mirror-action@v1.1  # 使用Yikun/hub-mirror-action
+      with:
+        src: github/lxlfpeng  # 源端账户名(github)
+        dst: gitee/lxlfpeng  # 目的端账户名(gitee)
+        dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}  # SSH密钥对中的私钥
+        dst_token:  ${{ secrets.GITEE_TOKEN }}  # Gitee账户的私人令牌
+        account_type: user  # 账户类型
+        clone_style: "https"  # 使用https方式进行clone，也可以使用ssh
+        debug: true  # 启用后会显示所有执行命令
+        force_update: true  # 启用后，强制同步，即强制覆盖目的端仓库
+        static_list: "MakeJson"  # 静态同步列表，在此填写需要同步的仓库名称，可填写多个
+        timeout: '600s'  # git超时设置，超时后会自动重试git操作
