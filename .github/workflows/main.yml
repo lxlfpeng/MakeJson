@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: setuserName
-        run: |
+      run: |
           git config --global user.email "565289282@qq.com"
           git config --global user.name "lxlfpeng"
     - name: Sync Github Repos To Gitee  # 名字随便起
