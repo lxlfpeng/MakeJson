@@ -1,11 +1,11 @@
 name: MakeJson
 
-# ´¥·¢ workflow µÄÊÂ¼ş
+# è§¦å‘ workflow çš„äº‹ä»¶
 on: [push]
 
-# Ò»¸öworkflowÓÉÖ´ĞĞµÄÒ»Ïî»ò¶àÏîjob
+# ä¸€ä¸ªworkflowç”±æ‰§è¡Œçš„ä¸€é¡¹æˆ–å¤šé¡¹job
 jobs:
-  # Ò»¸öjobÈÎÎñ£¬ÈÎÎñÃûÎªbuild
+  # ä¸€ä¸ªjobä»»åŠ¡ï¼Œä»»åŠ¡åä¸ºbuild
   build:
       runs-on: ubuntu-latest
       steps:
@@ -31,7 +31,6 @@ jobs:
           git add .
           git commit -m "update" -a
           git push
-      steps:
       - name: Black list
         uses: Yikun/hub-mirror-action@master
         with:
