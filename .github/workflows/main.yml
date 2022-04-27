@@ -1,16 +1,16 @@
 
-name: Sync To Gitee
-on: [ push ]
-jobs:
-  sync:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: wearerequired/git-mirror-action@master
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.GITEE_PRIVATE_KEY }}
-        with:
-          source-repo: "https://github.com/lxlfpeng/MakeJson.git"
-          destination-repo: "git@gitee.com:DaPengDePeng/make-json.git"      
+# name: Sync To Gitee
+# on: [ push ]
+# jobs:
+#   sync:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: wearerequired/git-mirror-action@master
+#         env:
+#           SSH_PRIVATE_KEY: ${{ secrets.GITEE_PRIVATE_KEY }}
+#         with:
+#           source-repo: "https://github.com/lxlfpeng/MakeJson.git"
+#           destination-repo: "git@gitee.com:DaPengDePeng/make-json.git"      
 
 # name: MakeJson
 
@@ -59,4 +59,25 @@ jobs:
 #           mappings: "MakeJson=>make-json"
 #           timeout: '2h'           
       
-
+name: Sync To Gitee
+on: [ push ]
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: setEva
+        env:
+         SSH_PRIVATE_KEY: ${{ secrets.GITEE_PRIVATE_KEY }}
+      - name: setSsh
+            run:|
+                 mkdir -p /root/.ssh
+                 echo "$GITEE_PRIVATE_KEY" > /root/.ssh/id_rsa
+                 chmod 600 /root/.ssh/id_rsa 
+      - name: commit
+          run:|
+            git config --global user.email lxlfpeng@163.com
+            git config --global user.name lxlfpeng
+            git add .
+            git commit -m "update" -a
+            git remote add gitee https://DaPengDePeng:yp335749225@gitee.com:DaPengDePeng/make-json.git
+            git push -u gitee "master" 
