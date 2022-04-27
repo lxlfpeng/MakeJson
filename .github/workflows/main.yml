@@ -1,11 +1,12 @@
-name: Sync To Gitee  #名字  可自定义
+name: Sync To Gitee  
+on: page_build
 jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-    - uses: wearerequired/git-mirror-action@master #开源actions包
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.GITEE_PRIVATE_KEY }}
-      with:
-        source-repo: "git@github.com:lxlfpeng/MakeJson.git" # github仓库地址
-        destination-repo: "git@gitee.com:DaPengDePeng/make-json.git" # gitee仓库地址
+      - uses: wearerequired/git-mirror-action@master
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.GITEE_PRIVATE_KEY }}
+        with:
+          source-repo: "git@github.com:lxlfpeng/MakeJson.git"
+          destination-repo: "git@gitee.com:DaPengDePeng/make-json.git"
