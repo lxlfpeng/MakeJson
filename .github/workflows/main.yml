@@ -8,7 +8,7 @@ jobs:
       uses: Yikun/hub-mirror-action@master
       with:
         src: github/lxlfpeng
-        dst: gitee/lxlfpeng
+        dst: gitee/DaPengDePeng
         dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
         dst_token: ${{ secrets.GITEE_TOKEN }}
         clone_style: "https"
