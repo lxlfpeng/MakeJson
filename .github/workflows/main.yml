@@ -66,12 +66,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: setEva
-        env:
+         env:
          SSH_PRIVATE_KEY: ${{ secrets.GITEE_PRIVATE_KEY }}
-          run:|
-           mkdir -p /root/.ssh
-           echo "$GITEE_PRIVATE_KEY" > /root/.ssh/id_rsa
-           chmod 600 /root/.ssh/id_rsa 
+            run:|
+              mkdir -p /root/.ssh
+              echo "$GITEE_PRIVATE_KEY" > /root/.ssh/id_rsa
+              chmod 600 /root/.ssh/id_rsa 
       - name: commit
             run:|
               git config --global user.email lxlfpeng@163.com
