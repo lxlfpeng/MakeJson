@@ -9,7 +9,7 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.GITEE_PRIVATE_KEY }}
         with:
-          source-repo: "git@github.com:lxlfpeng/MakeJson.git"
+          source-repo: "https://github.com/lxlfpeng/MakeJson.git"
           destination-repo: "git@gitee.com:DaPengDePeng/make-json.git"      
 
 # name: MakeJson
