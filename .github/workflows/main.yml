@@ -15,4 +15,6 @@ jobs:
         static_list: "MakeJson"
         force_update: true
         debug: true
+        mappings: "MakeJson=>make-json"
         timeout: '2h' 
+      
