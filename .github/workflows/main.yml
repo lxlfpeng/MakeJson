@@ -1,21 +1,48 @@
-name: Sync to Gitee
-on: [ push ]
+name: MakeJson
+
+# 触发 workflow 的事件
+on: [push]
+
+# 一个workflow由执行的一项或多项job
 jobs:
-  sync:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Black list
-      uses: Yikun/hub-mirror-action@master
-      with:
-        src: github/lxlfpeng
-        dst: gitee/DaPengDePeng
-        dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
-        dst_token: ${{ secrets.GITEE_TOKEN }}
-        clone_style: "https"
-        static_list: "MakeJson"
-        force_update: true
-        debug: true
-        mappings: "MakeJson=>make-json"
-        timeout: '2h' 
-        
+  # 一个job任务，任务名为build
+  build:
+      runs-on: ubuntu-latest
+      steps:
+      - name: checkout actions
+        uses: actions/checkout@v2 # Checking out the repo
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+      - name: Install dependencies
+        run: |
+           python -m pip install --upgrade pip
+            pip install requests
+            pip install bs4
+            pip install lxml
+      - name: Update paper list
+        run: |
+          python InformationFlow.py
+      - name: commit
+        run: |
+          git config --global user.email "565289282@qq.com"
+          git config --global user.name "lxlfpeng"
+          git add .
+          git commit -m "update" -a
+          git push
+      steps:
+      - name: Black list
+        uses: Yikun/hub-mirror-action@master
+        with:
+          src: github/lxlfpeng
+          dst: gitee/DaPengDePeng
+          dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+          dst_token: ${{ secrets.GITEE_TOKEN }}
+          clone_style: "https"
+          static_list: "MakeJson"
+          force_update: true
+          debug: true
+          mappings: "MakeJson=>make-json"
+          timeout: '2h'           
       
