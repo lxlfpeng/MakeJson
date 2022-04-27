@@ -9,8 +9,12 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     steps:
+    - name: setuserName
+      run: |
+          git config --global user.email "565289282@qq.com"
+          git config --global user.name "lxlfpeng"
     - name: Sync Github Repos To Gitee  # 名字随便起
-      uses: Yikun/hub-mirror-action@v1.2  # 使用Yikun/hub-mirror-action
+      uses: Yikun/hub-mirror-action@v1.1  # 使用Yikun/hub-mirror-action
       with:
         src: github/lxlfpeng  # 源端账户名(github)
         dst: gitee/DaPengDePeng  # 目的端账户名(gitee)
