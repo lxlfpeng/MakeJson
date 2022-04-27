@@ -12,7 +12,7 @@ jobs:
     - name: checkout
       uses: actions/checkout@v2 # Checking out the repo
     - name: Sync Github Repos To Gitee  # 名字随便起
-      uses: Yikun/hub-mirror-action@v1.0  # 使用Yikun/hub-mirror-action
+      uses: Yikun/hub-mirror-action@v1.2  # 使用Yikun/hub-mirror-action
       with:
         src: github/lxlfpeng  # 源端账户名(github)
         dst: gitee/DaPengDePeng  # 目的端账户名(gitee)
