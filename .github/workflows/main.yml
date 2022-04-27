@@ -1,15 +1,18 @@
-name: Sync To Gitee  
-on:
-  push:
-    branches: 
-      - master
+name: Sync to Gitee
+on: [ push ]
 jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - uses: wearerequired/git-mirror-action@master
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.GITEE_PRIVATE_KEY }}
-        with:
-          source-repo: "git@github.com:lxlfpeng/MakeJson.git"
-          destination-repo: "https://gitee.com/DaPengDePeng/make-json.git"
+    - name: Black list
+      uses: Yikun/hub-mirror-action@master
+      with:
+        src: github/lxlfpeng
+        dst: gitee/lxlfpeng
+        dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+        dst_token: ${{ secrets.GITEE_TOKEN }}
+        clone_style: "ssh"
+        static_list: "MakeJson"
+        force_update: true
+        debug: true
+        timeout: '1h' 
