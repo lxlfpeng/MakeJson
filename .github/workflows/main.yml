@@ -9,10 +9,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: setuserName
-      run: |
-          git config --global user.email "565289282@qq.com"
-          git config --global user.name "lxlfpeng"
+    - name: checkout
+      uses: actions/checkout@v2 # Checking out the repo
     - name: Sync Github Repos To Gitee  # 名字随便起
       uses: Yikun/hub-mirror-action@v1.0  # 使用Yikun/hub-mirror-action
       with:
