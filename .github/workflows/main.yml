@@ -1,7 +1,9 @@
 #任务名称
 name: MakeJson2Gitee
 # 触发 workflow 的事件
-on: [push]
+on:
+  schedule:
+    - cron: '45 07 * * *'
 # 一个workflow由执行的一项或多项job
 jobs:
   # 一个job任务，任务名为build
